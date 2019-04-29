@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter, Router } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { myProfile } from '../actions'
 
 
 class userNav extends React.Component{
@@ -10,24 +11,42 @@ class userNav extends React.Component{
     localStorage.removeItem("token")
   }
 
+  myProfileButtonHandler = (e) => {
+    this.props.dispatch({
+      type: "MY_PROFILE"
+    })
+  }
+
+  homeButtonHandler = (e) => {
+    console.log(this.props)
+    this.props.dispatch({
+      type: "HOME"
+    })
+  }
+
+  addButtonHandler = (e) => {
+    console.log(this.props)
+    this.props.dispatch({
+      type: "ADD"
+    })
+  }
+
     render(){
       return(
         <div className='usernavbar'>
-            <Link to="/home">
-              <button>
+
+              <button onClick={this.myProfileButtonHandler}>
                 My Profile
               </button>
-            </Link>
-            <Link >
-              <button>
+
+              <button onClick={this.homeButtonHandler}>
                 Home
               </button>
-            </Link>
-              <Link>
-                <button>
+
+                <button onClick={this.addButtonHandler}>
                   +
                 </button>
-              </Link>
+
           <Link to="/login">
             <button onClick={this.logOutHandler}>
               Logout
@@ -38,4 +57,8 @@ class userNav extends React.Component{
     }
 }
 
-export default withRouter(userNav)
+const mapStateToProps = (state) =>{
+  return state
+}
+
+export default withRouter(connect(mapStateToProps)(userNav))

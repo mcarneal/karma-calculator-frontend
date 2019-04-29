@@ -52,3 +52,9 @@ export const autoLogin = () => {
       })
   }
 }
+
+export const myProfile = () => {
+  return{
+    type: 'MY_PROFILE'
+  }
+}
