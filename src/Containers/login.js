@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { login } from '../actions'
 import { Route, Switch, withRouter } from "react-router-dom"
+import Signup from '../Components/signup'
 
 
 class Login extends React.Component{
-
 
   state = {
     username: '',
@@ -20,18 +20,30 @@ class Login extends React.Component{
 
   loginSubmitHandler = (e) => {
     e.preventDefault()
-    this.props.login(this.state)
-    this.setState({
-      username: '',
-      password: ''
+    fetch('http://localhost:3000/api/v1/login',{
+       method: 'POST',
+       headers: {
+            "Content-Type": "application/json"
+          },
+        body: JSON.stringify({
+          user:{
+            username: this.state.username,
+            password: this.state.password
+          }
+          })
       })
-      this.props.history.push('/home')
+      .then(res => res.json())
+      .then(data => {
+       if (data.error) {
+          alert("Incorrect Username or Password")
+        } else {
+          localStorage.setItem('token', data.token)
+          this.props.login(data)
+          this.props.history.push('/home')
+          console.log(this.props.user)
+        }
+      })
   }
-
-  componentDidMount(){
-    console.log('login mounted')
-  }
-
   render(){
     console.log(this.props)
     return(
@@ -54,6 +66,7 @@ class Login extends React.Component{
             <br></br>
           <button onClick={this.loginSubmitHandler}> Log in </button>
         </form>
+        <Signup />
       </div>
     )
   }

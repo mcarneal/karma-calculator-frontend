@@ -1,6 +1,54 @@
 export const login = (user) => {
   return {
     type: 'LOGIN',
-    payload: Object.assign({}, user)
+    payload: user
+  }
+}
+
+export const signmeUp = (user, routerHistory) => {
+  return dispatch => {
+    fetch('http://localhost:3000/api/v1/users', {
+      method: 'POST',
+      headers: {
+        "Accepts": "application/json",
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        user: user
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors) {
+          alert(data.errors)
+        } else {
+
+
+        dispatch({
+          type: 'SIGNME_UP',
+          payload: data.user
+        })
+          localStorage.setItem('token', data.token)
+          routerHistory.push('/home')
+      }
+      })
+  }
+}
+
+export const autoLogin = () => {
+  return dispatch => {
+    fetch('http://localhost:3000/api/v1/auto_login', {
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          alert(data.error)
+        } else {
+          dispatch({ type: 'LOGIN', payload: data.user})
+        }
+      })
   }
 }

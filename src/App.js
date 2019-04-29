@@ -3,19 +3,28 @@ import './App.css';
 import Login from './Containers/login'
 import Home from './Containers/home'
 import { connect } from 'react-redux'
-import { login } from './actions'
+import { autoLogin } from './actions'
 import { Route, Switch, withRouter } from "react-router-dom"
 
 
 class App extends React.Component{
 
+  //
+  componentDidMount() {
+    let token = localStorage.getItem("token")
+    if (token) {
+      this.props.autoLogin()
+  } else {
+      this.props.history.push('/login')
+  }
+}
 
   render(){
     return (
       <div className="App">
         <Switch>
           <Route exact path ="/home" render={()=> <Home user={this.props.user} / >}/>
-          <Route exact path ="/" render={()=> <Login / >}/>
+          <Route exact path ="/login" render={()=> <Login / >}/>
         </Switch>
       </div>
     );
@@ -23,10 +32,11 @@ class App extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  return {
+  return (
+    state, {
     user: state.user
-  }
+  })
 }
 
 
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps,  {autoLogin})(App))
