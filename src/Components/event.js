@@ -24,11 +24,28 @@ class event extends React.Component{
          },
        body: JSON.stringify({
          event:{
-           karma: this.props.karma + 1
+           karma: this.props.karma + 1,
+           user_id: this.props.userid
          }
         })
      })
    }
+
+   downButtonHandler = (e) => {
+     e.preventDefault()
+     this.setState({karma: this.state.karma - 1})
+     fetch(`http://localhost:3000/api/v1/events/${this.props.id}`,{
+       method: 'PATCH',
+       headers: {
+            "Content-Type": "application/json"
+          },
+        body: JSON.stringify({
+          event:{
+            karma: this.props.karma -1
+          }
+         })
+      })
+    }
 
    commentSubmit = (e) => {
      e.preventDefault()
@@ -50,10 +67,11 @@ class event extends React.Component{
     render(){
       return(
         <div>
+            <p>{this.props.username}</p>
             <p>{this.props.description}</p>
             <p>{this.props.location}</p>
             <p>{this.props.karma}</p>
-            <button onClick={this.upButtonHandler}>Up</button><button>Down</button>
+            <button onClick={this.upButtonHandler}>Up</button><button onClick={this.downButtonHandler}>Down</button>
             <form>
               <input
               type='text'

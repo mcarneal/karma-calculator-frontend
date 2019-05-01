@@ -6,10 +6,12 @@ import Event from '../Components/event'
 
 class feed extends React.Component{
 
-  handleReceived = (data) => {
-    console.log(data)
+  state = {
+    recievedNew: false
+  }
 
-    // let newEvent = data.events.slice(-1)[0]
+  handleReceived = (data) => {
+    this.setState({recievedNew: true})
     this.props.events(data.events)
     // return <Event key={data.id} {...data} />
   }
@@ -23,9 +25,8 @@ class feed extends React.Component{
   }
 
   renderEvents = () => {
-    // debugger
-    return this.props.fetch.map(event =>
-      <Event key={event.id} {...event} /> )
+      return this.props.fetch.map(event =>
+        <Event key={event.id} {...event} /> )
   }
 
   render(){
