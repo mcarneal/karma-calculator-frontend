@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import MyProfile from './myprofile'
 import Add from './add'
 import Feed from './feed'
+import { Route, Switch, withRouter } from "react-router-dom"
 
 class main extends React.Component{
 
 
   renderHandler = () => {
-    console.log('render handler', this.props.view)
+    console.log('render handler', this.props)
 
     switch(this.props.view.type){
       case "MY_PROFILE":
@@ -34,4 +35,4 @@ class main extends React.Component{
 const mapStateToProps = (state) =>{
   return state
 }
-export default connect(mapStateToProps)(main)
+export default withRouter(connect(mapStateToProps)(main))

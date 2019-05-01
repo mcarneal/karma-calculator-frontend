@@ -34,7 +34,7 @@ class userNav extends React.Component{
     render(){
       return(
         <div className='usernavbar'>
-
+            
               <button onClick={this.myProfileButtonHandler}>
                 My Profile
               </button>

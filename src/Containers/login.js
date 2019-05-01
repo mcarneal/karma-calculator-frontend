@@ -40,12 +40,10 @@ class Login extends React.Component{
           localStorage.setItem('token', data.token)
           this.props.login(data)
           this.props.history.push('/home')
-          console.log(this.props.user)
         }
       })
   }
   render(){
-    console.log(this.props)
     return(
       <div>
         <h1>Login</h1>

@@ -6,15 +6,18 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store'
 import { BrowserRouter } from 'react-router-dom'
+import { ActionCableProvider } from 'react-actioncable-provider'
 
 
 
 ReactDOM.render(
+  <ActionCableProvider url='ws://localhost:3000/api/v1/cable'>
   <Provider store={store}>
     <BrowserRouter>
     <App store={store} />
     </BrowserRouter>
-  </Provider>,
+  </Provider>
+</ActionCableProvider>,
   document.getElementById('root')
 );
 
