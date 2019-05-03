@@ -5,6 +5,13 @@ export const login = (user) => {
   }
 }
 
+export const selectedUser = (id) => {
+  return {
+    type: 'SELECTEDUSER',
+    payload: id
+  }
+}
+
 
 export const events = (events) => {
   return {
@@ -12,6 +19,14 @@ export const events = (events) => {
     payload: events
   }
 }
+
+export const comments = (comments) => {
+  return {
+    type: 'COMMENTS',
+    payload: comments
+  }
+}
+
 
 export const signmeUp = (user, routerHistory) => {
   return dispatch => {

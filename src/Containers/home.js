@@ -9,12 +9,19 @@ class Home extends React.Component{
 
   render(){
     return(
-    <div>
-      <UserNav />
-      <GlobalNav />
-      <h1>welcome home {this.props.user.username}</h1>
-      <Main />
+    <div className="window">
+      <div className="usernav">
+        <UserNav />
+      </div>
+      <div className='maincontainer'>
+        <div className='globalnav'>
+          <GlobalNav />
+        </div>
+        <div className='maincontent'>
+          <Main />
+      </div>
     </div>
+  </div>
     )
   }
 }

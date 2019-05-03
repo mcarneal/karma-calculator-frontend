@@ -7,6 +7,8 @@ const viewReducer = (state = {}, action) => {
       return action
     case "ADD":
       return action
+    case "SELECTEDUSER":
+      return action.payload
     default:
       return state
   }

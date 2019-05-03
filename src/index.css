@@ -12,3 +12,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.maincontainer {
+position: absolute;
+}
+
+.globalnav {
+  margin-top: 10%;
+  float: left;
+  width: 25%;
+}
+
+.maincontent {
+  margin-top: 10%;
+  float: left;
+  width: 75%;
+  overflow: scroll;
+
+}
+
+.usercard {
+  background-color: grey;
+}

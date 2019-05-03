@@ -20,7 +20,8 @@ class add extends React.Component{
             event:{
               location: this.state.location,
               description: this.state.description,
-              user_id: this.props.user.id
+              user_id: this.props.user.id,
+              created_by: this.props.user.username
             }
             })
         })

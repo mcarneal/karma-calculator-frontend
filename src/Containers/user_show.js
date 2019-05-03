@@ -1,37 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Event from '../Components/event'
-import { ActionCableConsumer } from 'react-actioncable-provider'
 import { events } from '../actions'
 import { comments } from '../actions'
+import Event from '../Components/event'
+import { Route, Switch, withRouter } from "react-router-dom"
+import { ActionCableConsumer } from 'react-actioncable-provider'
 
-class myProfile extends React.Component{
+
+class UserShow extends React.Component{
 
   state = {
-    myEvents : []
+    myEvents : [],
+    username: ''
   }
 
   handleReceived = (data) => {
     this.props.events(data.events)
     this.props.comments(data.comments)
-    let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.user.id )
+    let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.view )
     this.setState({myEvents})
-  }
 
+  }
 
 
 
   componentDidMount(){
-    let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.user.id )
+    if(isNaN(this.props.view)){
+         this.props.history.push('/home')
+       } else {
+    let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.view )
     myEvents.map(event => this.setState({username : event.username}))
     this.setState({myEvents})
+    }
   }
 
   renderMyEvents = () =>{
-    console.log(this.state.myEvents)
-    return this.state.myEvents.map(event =>
-     <Event {...event} />
-    )
+    console.log(this.props.fetch)
+    let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.view)
+    console.log('my events render', myEvents)
+    return myEvents.map(event => <Event {...event} />)
   }
 
   goodKarma = () => {
@@ -60,8 +67,8 @@ class myProfile extends React.Component{
     let total = this.totalKarma()
     return(
     <div>
-    <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
-      <h1>My Profile</h1>
+      <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
+      <h1>{this.state.username} s profile</h1>
       {this.renderMyEvents()}
       <h1>Good Karma Points: {good}</h1>
       <h1>Bad Karma Points: {bad}</h1>
@@ -74,4 +81,4 @@ class myProfile extends React.Component{
 const mapStateToProps = (state) =>{
   return state
 }
-export default connect(mapStateToProps, { events, comments })(myProfile)
+export default withRouter(connect(mapStateToProps, { events, comments })(UserShow))

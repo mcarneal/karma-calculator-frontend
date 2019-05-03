@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Login from './Containers/login'
 import Home from './Containers/home'
+import UserShow from './Containers/user_show'
 import { connect } from 'react-redux'
 import { autoLogin } from './actions'
 import { Route, Switch, withRouter } from "react-router-dom"
@@ -25,6 +26,7 @@ class App extends React.Component{
         <Switch>
           <Route exact path ="/home" render={()=> <Home user={this.props.user} / >}/>
           <Route exact path ="/login" render={()=> <Login / >}/>
+            <Route exact path ="/user_show" render={()=> <UserShow />}/>
         </Switch>
       </div>
     );

@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import UserShow from '../Containers/user_show'
+import { Route, Switch, Link  } from "react-router-dom"
+import { selectedUser } from '../actions'
 
 class event extends React.Component{
 
@@ -48,6 +51,7 @@ class event extends React.Component{
     }
 
    commentSubmit = (e) => {
+
      e.preventDefault()
      fetch("http://localhost:3000/api/v1/comments",{
        method: 'POST',
@@ -58,16 +62,31 @@ class event extends React.Component{
          comment:{
            description: this.state.comment,
            user_id: this.props.user.id,
-           event_id: this.props.id
+           event_id: this.props.id,
+           username: this.props.user.username
          }
          })
        })
    }
 
+   renderComments = () => {
+     let myComments = this.props.user_comments.filter(comment => parseInt(comment.event_id) === this.props.id )
+     return myComments.map(comment =>
+       <p>{comment.username} wrote : {comment.description}</p>)
+   }
+
+   userProfileHandler = () => {
+     this.props.selectedUser(parseInt(this.props.user_id))
+   }
+
+
+
     render(){
       return(
-        <div>
-            <p>{this.props.username}</p>
+        <div className="usercard">
+          <Link to='/user_show' onClick={this.userProfileHandler}>
+            <p>{this.props.created_by}</p>
+          </Link>
             <p>{this.props.description}</p>
             <p>{this.props.location}</p>
             <p>{this.props.karma}</p>
@@ -81,6 +100,8 @@ class event extends React.Component{
                 />
               <button onClick={this.commentSubmit}>Submit</button>
             </form>
+            {this.renderComments()}
+
         </div>
       )
     }
@@ -90,4 +111,4 @@ const mapStateToProps = (state) => {
   return state
 }
 
-export default connect(mapStateToProps)(event)
+export default connect(mapStateToProps, { selectedUser })(event)

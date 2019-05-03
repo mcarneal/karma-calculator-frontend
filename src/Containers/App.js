@@ -117,7 +117,7 @@ class App extends Component {
         <NavBar className='nav' logoutHandler={this.logoutHandler}/>
         <div className='main container'>
           <Switch>
-            <Route exact path ="/home" render={()=> <Home employee={this.state.employee}/ >}/>
+            <Route exact path ="/home" render={()=> <Home / >}/>
             <Route exact path="/login" render={()=> <Login loginHandler={this.loginHandler} createUser={this.createUser}/>}/>
           </Switch>
         </div>
