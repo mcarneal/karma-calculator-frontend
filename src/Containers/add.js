@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import NewEventMap from '../Components/neweventmap'
 
 class add extends React.Component{
 
@@ -51,6 +52,7 @@ class add extends React.Component{
         <input type='text' placeholder='description' name='description' value={this.state.description} onChange={this.changeHandler} />
         <button onClick={this.addClickHandler}>add</button>
       </form>
+      <NewEventMap />
     </div>
     )
   }

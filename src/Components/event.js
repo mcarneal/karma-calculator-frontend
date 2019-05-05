@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import UserShow from '../Containers/user_show'
 import { Route, Switch, Link  } from "react-router-dom"
 import { selectedUser } from '../actions'
+import 'leaflet/dist/leaflet.css'
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import L from 'leaflet';
+import NewEventMap from './neweventmap'
 
 class event extends React.Component{
 
   state = {
     karma : this.props.karma,
-    comment: ''
+    comment: '',
+    showMap: false
   }
 
   commentOnChange = (e) => {
@@ -79,6 +84,11 @@ class event extends React.Component{
      this.props.selectedUser(parseInt(this.props.user_id))
    }
 
+   showMapHandler = (e) => {
+     e.preventDefault()
+     this.setState({showMap : !this.state.showMap})
+   }
+
 
 
     render(){
@@ -101,7 +111,8 @@ class event extends React.Component{
               <button onClick={this.commentSubmit}>Submit</button>
             </form>
             {this.renderComments()}
-
+            <button onClick={this.showMapHandler}>Show map</button>
+            {this.state.showMap ? <NewEventMap /> : null}
         </div>
       )
     }

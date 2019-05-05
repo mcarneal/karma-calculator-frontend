@@ -18,9 +18,6 @@ class myProfile extends React.Component{
     this.setState({myEvents})
   }
 
-
-
-
   componentDidMount(){
     let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.user.id )
     myEvents.map(event => this.setState({username : event.username}))

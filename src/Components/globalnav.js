@@ -12,9 +12,11 @@ class globalNav extends React.Component{
         <button>
           feed
         </button>
+        <Link to="/globalmap">
         <button>
           map
         </button>
+      </Link>
         <button>
           sponsers
         </button>

@@ -9,8 +9,6 @@ class main extends React.Component{
 
 
   renderHandler = () => {
-    console.log('render handler', this.props)
-
     switch(this.props.view.type){
       case "MY_PROFILE":
         return <MyProfile />

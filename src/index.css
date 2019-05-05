@@ -14,19 +14,21 @@ code {
 }
 
 .maincontainer {
-position: absolute;
+position: relative;
 }
 
 .globalnav {
-  margin-top: 10%;
   float: left;
   width: 25%;
 }
 
+.usernav{
+  margin-bottom: 5%;
+}
+
 .maincontent {
-  margin-top: 10%;
   float: left;
-  width: 75%;
+  width: 40%;
   overflow: scroll;
 
 }
@@ -34,3 +36,18 @@ position: absolute;
 .usercard {
   background-color: grey;
 }
+
+.leaflet-container {
+
+  }
+
+  .map-container{
+    float: left;
+    height: 50em;
+    width: 65em;
+    margin: 0 auto;
+  }
+
+  .neweventmap{
+
+  }
