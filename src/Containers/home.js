@@ -1,8 +1,13 @@
 import React from 'react';
-import { withRouter} from 'react-router-dom'
 import UserNav from '../Components/usernav'
 import GlobalNav from '../Components/globalnav'
 import Main from './main'
+import MyProfile from './myprofile'
+import Add from './add'
+import Feed from './feed'
+import { Route, Switch, withRouter } from "react-router-dom"
+import Map from './map'
+import { connect } from 'react-redux'
 
 class Home extends React.Component{
 
@@ -14,16 +19,19 @@ class Home extends React.Component{
         <UserNav />
       </div>
       <div className='maincontainer'>
-        <div className='globalnav'>
-          <GlobalNav />
-        </div>
         <div className='maincontent'>
-          <Main />
+          <Feed />
+        </div>
+        <div className='globalmap'>
+          {this.props.fetch.length > 0 ? <Map /> : null}
+        </div>
       </div>
     </div>
-  </div>
     )
   }
 }
 
-export default withRouter(Home)
+const mapStateToProps = (state) =>{
+  return state
+}
+export default withRouter(connect(mapStateToProps)(Home))

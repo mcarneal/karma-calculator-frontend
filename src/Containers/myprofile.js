@@ -4,6 +4,7 @@ import Event from '../Components/event'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import { events } from '../actions'
 import { comments } from '../actions'
+import UserNav from '../Components/usernav'
 
 class myProfile extends React.Component{
 
@@ -57,6 +58,8 @@ class myProfile extends React.Component{
     let total = this.totalKarma()
     return(
     <div>
+      <UserNav />
+      <h1>mypforile</h1>
     <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
       <h1>My Profile</h1>
       {this.renderMyEvents()}

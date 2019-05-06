@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import NewEventMap from '../Components/neweventmap'
+import UserNav from '../Components/usernav'
+import { withRouter} from 'react-router-dom'
 
 class add extends React.Component{
 
@@ -12,8 +14,8 @@ class add extends React.Component{
   }
 
 
-  addClickHandler = () => {
-
+  addClickHandler = (e) => {
+    e.preventDefault()
       fetch('http://localhost:3000/api/v1/events',{
          method: 'POST',
          headers: {
@@ -54,6 +56,7 @@ class add extends React.Component{
   render(){
     return(
     <div>
+      <UserNav />
       <h1>Add</h1>
       <form>
         <input type='text' placeholder='location' name='location' value={this.state.location} onChange={this.changeHandler} />
@@ -70,4 +73,4 @@ class add extends React.Component{
 const mapStateToProps = (state) =>{
   return state
 }
-export default connect(mapStateToProps)(add)
+export default withRouter(connect(mapStateToProps)(add))

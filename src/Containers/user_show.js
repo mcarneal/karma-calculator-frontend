@@ -6,6 +6,7 @@ import { myEvents } from '../actions'
 import Event from '../Components/event'
 import { Route, Switch, withRouter } from "react-router-dom"
 import { ActionCableConsumer } from 'react-actioncable-provider'
+import UserNav from '../Components/usernav'
 
 
 
@@ -76,13 +77,20 @@ class UserShow extends React.Component{
     };
     return(
     <div>
+    <UserNav />
+    <h1>{this.state.username} s profile</h1>
+    <div className='user-container'>
       <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
-      <h1>{this.state.username} s profile</h1>
+      <div className='card-container'>
       {this.renderMyEvents()}
+    </div>
+    <div className='karma-container'>
       <h1>Good Karma Points: {good}</h1>
       <h1>Bad Karma Points: {bad}</h1>
       <h1>Total Karma Points: {Math.round(total * 100) / 100}</h1>
+      </div>
     </div>
+  </div>
     )
   }
 }

@@ -15,6 +15,7 @@ class userNav extends React.Component{
     this.props.dispatch({
       type: "MY_PROFILE"
     })
+    this.props.history.push('/myprofile')
   }
 
   homeButtonHandler = (e) => {
@@ -22,6 +23,7 @@ class userNav extends React.Component{
     this.props.dispatch({
       type: "HOME"
     })
+    this.props.history.push('/home')
   }
 
   addButtonHandler = (e) => {
@@ -29,12 +31,13 @@ class userNav extends React.Component{
     this.props.dispatch({
       type: "ADD"
     })
+    this.props.history.push('/add')
   }
 
     render(){
       return(
         <div className='usernavbar'>
-            
+
               <button onClick={this.myProfileButtonHandler}>
                 My Profile
               </button>
