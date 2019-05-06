@@ -10,7 +10,9 @@ class feed extends React.Component{
 
 
   handleReceived = (data) => {
-    this.props.events(data.events)
+    let sortedArray = data.events.sort(function(a, b){return b.id - a.id})
+    console.log(sortedArray)
+    this.props.events(sortedArray)
     this.props.comments(data.comments)
   }
 
@@ -28,7 +30,9 @@ class feed extends React.Component{
   }
 
   renderEvents = () => {
-    return this.props.fetch.map(event =>
+
+    let sortedArray = this.props.fetch.sort(function(a, b){return b.id - a.id})
+    return sortedArray.map(event =>
       <Event key={event.id} {...event} />
     )
   }

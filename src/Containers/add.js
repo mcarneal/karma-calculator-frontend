@@ -7,7 +7,8 @@ class add extends React.Component{
 
   state = {
     location: '',
-    description: ''
+    description: '',
+    marker : null
   }
 
 
@@ -22,7 +23,9 @@ class add extends React.Component{
               location: this.state.location,
               description: this.state.description,
               user_id: this.props.user.id,
-              created_by: this.props.user.username
+              created_by: this.props.user.username,
+              lat: this.state.marker[0],
+              lng: this.state.marker[1]
             }
             })
         })
@@ -41,6 +44,11 @@ class add extends React.Component{
       })
   }
 
+  mapClickHandler = (e) => {
+    this.setState({marker: [e.latlng.lat, e.latlng.lng]})
+    console.log('inside the add insrtance', this.state.marker)
+  }
+
 
 
   render(){
@@ -52,7 +60,8 @@ class add extends React.Component{
         <input type='text' placeholder='description' name='description' value={this.state.description} onChange={this.changeHandler} />
         <button onClick={this.addClickHandler}>add</button>
       </form>
-      <NewEventMap />
+      <NewEventMap mapClickHandler={this.mapClickHandler}
+      marker={this.state.marker} />
     </div>
     )
   }

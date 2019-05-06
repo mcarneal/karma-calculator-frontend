@@ -15,15 +15,6 @@ L.Icon.Default.mergeOptions({
 class NewEventMap extends React.Component{
 
 
-  state = {
-    marker : null
-  }
-
-
-  mapOnclick = (e) => {
-    this.setState({marker: [e.latlng.lat, e.latlng.lng]})
-    console.log(this.state.marker)
-  }
 
   render(){
     const style = {
@@ -34,15 +25,15 @@ class NewEventMap extends React.Component{
     return(
       <div className='neweventmap'>
       <Map
-        onClick={this.mapOnclick}
+        onClick={this.props.mapClickHandler}
         center={position}
         style={style}
         zoom={13}>
         <TileLayer
           url='https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'
           attribution="&copy; <a href=&quot;http://osm.org/ copyright&quot;>OpenStreetMap</a> contributors"/>
-        {this.state.marker ?
-            <Marker position={this.state.marker}>
+        {this.props.marker ?
+            <Marker position={this.props.marker}>
               <Popup>You are here</Popup>
             </Marker> : null}
       </Map>

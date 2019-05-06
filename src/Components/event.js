@@ -6,7 +6,7 @@ import { selectedUser } from '../actions'
 import 'leaflet/dist/leaflet.css'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import L from 'leaflet';
-import NewEventMap from './neweventmap'
+import EventMap from './eventmap'
 
 class event extends React.Component{
 
@@ -112,7 +112,8 @@ class event extends React.Component{
             </form>
             {this.renderComments()}
             <button onClick={this.showMapHandler}>Show map</button>
-            {this.state.showMap ? <NewEventMap /> : null}
+            {this.state.showMap ? <EventMap lat={this.props.lat}
+            lng={this.props.lng} /> : null}
         </div>
       )
     }

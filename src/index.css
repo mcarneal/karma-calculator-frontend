@@ -37,17 +37,11 @@ position: relative;
   background-color: grey;
 }
 
-.leaflet-container {
 
-  }
 
   .map-container{
     float: left;
     height: 50em;
     width: 65em;
     margin: 0 auto;
-  }
-
-  .neweventmap{
-
   }

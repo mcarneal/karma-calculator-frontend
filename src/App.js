@@ -30,6 +30,7 @@ class App extends React.Component{
           <Route exact path ="/user_show" render={()=> <UserShow />}/>
           <Route exact path ='/globalmap' render={()=> <Map />}/>
         </Switch>
+        <Map />
       </div>
     );
   }
