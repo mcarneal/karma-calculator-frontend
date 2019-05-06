@@ -4,13 +4,15 @@ import { events } from '../actions'
 import { comments } from '../actions'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import Event from '../Components/event'
+import Map from './map'
 
 class feed extends React.Component{
 
 
 
   handleReceived = (data) => {
-    this.props.events(data.events)
+    let sortedArray = data.events.sort(function(a, b){return b.id - a.id})
+    this.props.events(sortedArray)
     this.props.comments(data.comments)
   }
 
@@ -28,7 +30,9 @@ class feed extends React.Component{
   }
 
   renderEvents = () => {
-    return this.props.fetch.map(event =>
+
+    let sortedArray = this.props.fetch.sort(function(a, b){return b.id - a.id})
+    return sortedArray.map(event =>
       <Event key={event.id} {...event} />
     )
   }
@@ -37,10 +41,12 @@ class feed extends React.Component{
     let events = this.renderEvents()
     return(
     <div>
+    <div>
       <h1>welcome back {this.props.user.username}</h1>
       <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
       {events}
     </div>
+  </div>
     )
   }
 }

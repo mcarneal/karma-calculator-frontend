@@ -16,13 +16,13 @@ class NewEventMap extends React.Component{
 
 
   state = {
-    marker : null
+    marker : this.props.marker
   }
 
 
   mapOnclick = (e) => {
     this.setState({marker: [e.latlng.lat, e.latlng.lng]})
-    console.log(this.state.marker)
+    this.props.mapClickHandler(e)
   }
 
   render(){

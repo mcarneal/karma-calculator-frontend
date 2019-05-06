@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { events } from '../actions'
 import { comments } from '../actions'
+import { myEvents } from '../actions'
 import Event from '../Components/event'
 import { Route, Switch, withRouter } from "react-router-dom"
 import { ActionCableConsumer } from 'react-actioncable-provider'
+
 
 
 class UserShow extends React.Component{
@@ -18,10 +20,10 @@ class UserShow extends React.Component{
     this.props.events(data.events)
     this.props.comments(data.comments)
     let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.view )
-    this.setState({myEvents})
-
+    let sortedArray = myEvents.sort(function(a, b){return b.id - a.id})
+    this.setState({myEvents : sortedArray})
+    this.props.myEvents(sortedArray)
   }
-
 
 
   componentDidMount(){
@@ -30,15 +32,17 @@ class UserShow extends React.Component{
        } else {
     let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.view )
     myEvents.map(event => this.setState({username : event.username}))
-    this.setState({myEvents})
+    let sortedArray = myEvents.sort(function(a, b){return b.id - a.id})
+    this.setState({myEvents : sortedArray})
+    this.props.myEvents(sortedArray)
+
     }
   }
 
   renderMyEvents = () =>{
-    console.log(this.props.fetch)
     let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.view)
-    console.log('my events render', myEvents)
-    return myEvents.map(event => <Event {...event} />)
+    let sortedArray = myEvents.sort(function(a, b){return b.id - a.id})
+    return sortedArray.map(event => <Event {...event} />)
   }
 
   goodKarma = () => {
@@ -65,6 +69,11 @@ class UserShow extends React.Component{
     let good = this.goodKarma()
     let bad = this.badKarma()
     let total = this.totalKarma()
+
+    const style = {
+    width: "100%",
+    height: "500px"
+    };
     return(
     <div>
       <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
@@ -81,4 +90,4 @@ class UserShow extends React.Component{
 const mapStateToProps = (state) =>{
   return state
 }
-export default withRouter(connect(mapStateToProps, { events, comments })(UserShow))
+export default withRouter(connect(mapStateToProps, { events, comments, myEvents })(UserShow))

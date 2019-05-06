@@ -4,6 +4,7 @@ import MyProfile from './myprofile'
 import Add from './add'
 import Feed from './feed'
 import { Route, Switch, withRouter } from "react-router-dom"
+import Map from './map'
 
 class main extends React.Component{
 
@@ -13,7 +14,11 @@ class main extends React.Component{
       case "MY_PROFILE":
         return <MyProfile />
       case "HOME":
-        return <Feed />
+        return (
+        <div>
+          <Feed />
+          <Map />
+        </div>)
       case "ADD":
         return <Add />
       default:

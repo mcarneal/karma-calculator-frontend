@@ -12,6 +12,12 @@ export const selectedUser = (id) => {
   }
 }
 
+export const myEvents = (events) => {
+  return {
+    type: 'MYEVENTS',
+    payload: events
+  }
+}
 
 export const events = (events) => {
   return {
