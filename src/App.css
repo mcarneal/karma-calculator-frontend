@@ -31,3 +31,14 @@
     transform: rotate(360deg);
   }
 }
+
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+@font-face{
+  font-family: 'Pacifico', cursive;
+  src: url('https://fonts.googleapis.com/css?family=Pacifico')
+}
+
+h1{
+  font-family: 'Pacifico', cursive;
+}

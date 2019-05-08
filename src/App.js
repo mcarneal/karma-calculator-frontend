@@ -9,6 +9,8 @@ import { Route, Switch, withRouter } from "react-router-dom"
 import Map from './Containers/map'
 import MyProfile from './Containers/myprofile'
 import Add from './Containers/add'
+import DemoCarousel from './Containers/imageCarosel'
+
 
 
 class App extends React.Component{
@@ -19,7 +21,7 @@ class App extends React.Component{
     if (token) {
       this.props.autoLogin()
   } else {
-      this.props.history.push('/login')
+      this.props.history.push('/')
   }
 }
 
@@ -28,7 +30,12 @@ class App extends React.Component{
       <div className="App">
         <Switch>
           <Route exact path ="/home" render={()=> <Home user={this.props.user} / >}/>
-          <Route exact path ="/login" render={()=> <Login / >}/>
+          <Route exact path ="/" render={()=>
+              <div>
+              <Login />
+            <DemoCarousel  />
+            </div>
+          }/>
           <Route exact path ="/user_show" render={()=> <UserShow />}/>
           <Route exact path ='/globalmap' render={()=> <Map />}/>
           <Route exact path="/myprofile" render={()=> <MyProfile />}/>

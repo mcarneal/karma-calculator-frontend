@@ -2,6 +2,7 @@ import React from 'react';
 import * as eeGeo from 'wrld.js';
 import 'leaflet/dist/leaflet.css';
 import { connect } from 'react-redux'
+import { newCords } from '../actions'
 
 class Map extends React.Component{
 
@@ -17,7 +18,7 @@ class Map extends React.Component{
             40.70547963400777,
             -74.01334879919888
           ],
-          zoom: 16
+          zoom: 15
         })
       }, () => {
         this.renderMarkers()
@@ -45,23 +46,51 @@ class Map extends React.Component{
     }
   }
 
-  animateMap = () => {
-    if (this.state.events){
-      console.log('inside elements', this.state.events)
+
+
+  changeView = () =>{
+    if (this.props.map_position && this.state.map){
+      this.state.map.setView(this.props.map_position)
+    }
+  }
+
+
+  clickHandler =()=>{
+    if(this.state.map && this.props.new_event){
+      let map = this.state.map
+      let marker;
+      map.addEventListener("click", (e)=> {
+      if(marker){
+        map.removeLayer(marker)
+        marker = eeGeo.marker([e.latlng.lat, e.latlng.lng], { title: "My marker" }).addTo(map)
+          // this.props.newCords([e.latlng.lat, e.latlng.lng])
+      } else {
+        marker = eeGeo.marker([e.latlng.lat, e.latlng.lng], { title: "My marker" }).addTo(map)
+          // this.props.newCords([e.latlng.lat, e.latlng.lng])
+          this.props.addHandler([e.latlng.lat, e.latlng.lng])
+      }
+
+    })
     }
   }
 
 
 
   render() {
+    console.log('from map', this.props)
     const style = {
       width: "100%",
       height: "750px"
     };
 
+
+
     return(
-      <div id="map" style={style}>
-        {this.animateMap()}
+      <div id="map"
+        style={style}
+        >
+        {this.changeView()}
+        {this.clickHandler()}
       </div>
     )
   }
@@ -71,4 +100,4 @@ const mapStateToProps = (state) =>{
   return state
 }
 
-export default connect(mapStateToProps)(Map)
+export default connect(mapStateToProps, {newCords})(Map)

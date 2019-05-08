@@ -8,8 +8,6 @@ import Map from './map'
 
 class feed extends React.Component{
 
-
-
   handleReceived = (data) => {
     let sortedArray = data.events.sort(function(a, b){return b.id - a.id})
     this.props.events(sortedArray)
@@ -41,11 +39,8 @@ class feed extends React.Component{
     let events = this.renderEvents()
     return(
     <div>
-    <div>
-      <h1>welcome back {this.props.user.username}</h1>
       <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
       {events}
-    </div>
   </div>
     )
   }

@@ -4,6 +4,10 @@ import { login } from '../actions'
 import { Route, Switch, withRouter } from "react-router-dom"
 import Signup from '../Components/signup'
 
+import { Button, Menu, Modal, Card, Header, Input } from 'semantic-ui-react'
+
+import DemoCarousel from './imageCarosel'
+
 
 class Login extends React.Component{
 
@@ -19,6 +23,7 @@ class Login extends React.Component{
   }
 
   loginSubmitHandler = (e) => {
+
     e.preventDefault()
     fetch('http://localhost:3000/api/v1/login',{
        method: 'POST',
@@ -44,27 +49,59 @@ class Login extends React.Component{
       })
   }
   render(){
+
     return(
+
       <div>
-        <h1>Login</h1>
-        <form>
-          <input
-             type='text'
-             placeholder='username'
-             name='username'
-             onChange={this.loginChangeHandler}
-             value={this.state.username}/>
+        <Menu>
+          <Menu.Item>
+              <Modal trigger={<Button primary>Sign up</Button>}>
+
+                  <Modal.Header>
+                    Welcome to Karma Calculator. Please register and account with us by providing the folowing information.
+                  </Modal.Header>
+                <Modal.Description>
+                  <Header>
+                    Please Create a Unique username and password
+                  </Header>
+                  <Signup />
+                    <br></br>
+                      <br></br>
+                        <br></br>
+                          <br></br>
+                            <br></br>
+                </Modal.Description>
+              </Modal>
+      </Menu.Item>
+
+      <Menu.Item>
+        <Modal trigger={<Button primary>Log-in</Button>}>
+          <Modal.Header className='loginheader'>
+            <h1>Please enter a valid Username and Password</h1>
+          </Modal.Header>
           <br></br>
-          <input
-            type='password'
-            placeholder='password'
-            name='password'
+          <Input
+            placeholder='username'
+            name='username'
             onChange={this.loginChangeHandler}
-            value={this.state.password}/>
+            value={this.state.username}
+            />
+          <Input
+              type='password'
+              placeholder='password'
+              name='password'
+              onChange={this.loginChangeHandler}
+              value={this.state.password}/>
+            <button className='ui blue button' id='login' onClick={this.loginSubmitHandler}> Log in </button>
             <br></br>
-          <button onClick={this.loginSubmitHandler}> Log in </button>
-        </form>
-        <Signup />
+              <br></br>
+                <br></br>
+                  <br></br>
+                    <br></br>
+        </Modal>
+      </Menu.Item>
+    </Menu>
+
       </div>
     )
   }
@@ -77,3 +114,24 @@ const mapStateToProps = (state) => {
 }
 
 export default withRouter(connect(mapStateToProps, {login})(Login))
+
+
+// <h1>Login</h1>
+// <form>
+//   <Input
+//      type='text'
+//      placeholder='username'
+//      name='username'
+//      onChange={this.loginChangeHandler}
+//      value={this.state.username}/>
+//   <br></br>
+//   <input
+//     type='password'
+//     placeholder='password'
+//     name='password'
+//     onChange={this.loginChangeHandler}
+//     value={this.state.password}/>
+//     <br></br>
+//   <button onClick={this.loginSubmitHandler}> Log in </button>
+// </form>
+// <Signup />

@@ -7,9 +7,25 @@ import Add from './add'
 import Feed from './feed'
 import { Route, Switch, withRouter } from "react-router-dom"
 import Map from './map'
+import NewEventForm from '../Components/neweventform'
 import { connect } from 'react-redux'
 
 class Home extends React.Component{
+
+
+  state = {
+    cords: []
+  }
+
+  addClickHandler = (props) => {
+    this.setState({cords: props})
+  }
+
+  componentDidMount(){
+    this.props.dispatch({
+      type: "HOME"
+    })
+  }
 
 
   render(){
@@ -20,16 +36,20 @@ class Home extends React.Component{
       </div>
       <div className='maincontainer'>
         <div className='maincontent'>
-          <Feed />
+
+          <Add cords={this.state.cords} />
+           <Feed />
         </div>
         <div className='globalmap'>
-          {this.props.fetch.length > 0 ? <Map /> : null}
+          {this.props.fetch.length > 0 ? <Map addHandler={this.addClickHandler}/> : null}
         </div>
       </div>
     </div>
     )
   }
 }
+
+
 
 const mapStateToProps = (state) =>{
   return state

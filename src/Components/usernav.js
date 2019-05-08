@@ -2,27 +2,40 @@ import React from 'react';
 import { Link, withRouter, Router } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { myProfile } from '../actions'
+import { Menu, Segment } from 'semantic-ui-react'
 
 
 class userNav extends React.Component{
 
-  logOutHandler = (e) =>{
-
-    localStorage.removeItem("token")
+  state = {
+    activeItem : 'home'
   }
 
-  myProfileButtonHandler = (e) => {
+
+   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+
+
+  logOutHandler = (e, { name }) =>{
+    this.setState({ activeItem: name })
+    localStorage.removeItem("token")
+    this.props.history.push('/')
+  }
+
+  myProfileButtonHandler = (e, { name }) => {
     this.props.dispatch({
       type: "MY_PROFILE"
     })
+    this.setState({ activeItem: name })
     this.props.history.push('/myprofile')
   }
 
-  homeButtonHandler = (e) => {
+  homeButtonHandler = (e, { name }) => {
     console.log(this.props)
     this.props.dispatch({
       type: "HOME"
     })
+    this.setState({ activeItem: name })
     this.props.history.push('/home')
   }
 
@@ -35,27 +48,25 @@ class userNav extends React.Component{
   }
 
     render(){
+      const { activeItem } = this.state
+
       return(
-        <div className='usernavbar'>
+        <Segment inverted>
+          <Menu inverted secondary>
+            <Menu.Item name='home' active={activeItem === 'home'} onClick={this.homeButtonHandler} />
+            <Menu.Item
+              name={this.props.user.username}
+              active={activeItem === this.props.user.username}
+              onClick={this.myProfileButtonHandler}
+              />
+            <Menu.Item
+              name='LogOut'
+              active={activeItem === 'LogOut'}
+              onClick={this.logOutHandler}
+              />
+          </Menu>
+        </Segment>
 
-              <button onClick={this.myProfileButtonHandler}>
-                My Profile
-              </button>
-
-              <button onClick={this.homeButtonHandler}>
-                Home
-              </button>
-
-                <button onClick={this.addButtonHandler}>
-                  +
-                </button>
-
-          <Link to="/login">
-            <button onClick={this.logOutHandler}>
-              Logout
-            </button>
-          </Link>
-        </div>
       )
     }
 }

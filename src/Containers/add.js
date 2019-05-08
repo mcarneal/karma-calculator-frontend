@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import NewEventMap from '../Components/neweventmap'
 import UserNav from '../Components/usernav'
 import { withRouter} from 'react-router-dom'
+import { Input, Card, Form, Button } from 'semantic-ui-react'
+import { addMap } from '../actions'
 
 class add extends React.Component{
 
@@ -27,8 +29,8 @@ class add extends React.Component{
               description: this.state.description,
               user_id: this.props.user.id,
               created_by: this.props.user.username,
-              lat: this.state.marker[0],
-              lng: this.state.marker[1]
+              lat: this.props.cords[0],
+              lng: this.props.cords[1]
             }
             })
         })
@@ -37,8 +39,7 @@ class add extends React.Component{
             location: '',
             description: ''
             })
-          })
-        this.props.history.push('/home')
+          }, this.props.addMap())
   }
 
   changeHandler = (event) => {
@@ -52,20 +53,56 @@ class add extends React.Component{
   }
 
 
+  addToMapHandler = () => {
+    this.props.addMap()
+  }
+
+
+
+
 
   render(){
+    console.log('propin render', this.props)
+    console.log('add event test', this.props.new_event)
     return(
-    <div>
-      <UserNav />
-      <h1>Add</h1>
-      <form>
-        <input type='text' placeholder='location' name='location' value={this.state.location} onChange={this.changeHandler} />
-        <input type='text' placeholder='description' name='description' value={this.state.description} onChange={this.changeHandler} />
-        <button onClick={this.addClickHandler}>add</button>
-      </form>
-      <NewEventMap mapClickHandler={this.mapClickHandler}
-      marker={this.state.marker} />
+    <div className='add-container'>
+      <Card>
+        <Card.Header>
+          {this.props.user.username}
+          <br></br>
+          Add a new event ?
+            <br></br>
+        </Card.Header>
+          <Card.Description>
+            Add a Description of either a good or bad deed you have recently done.
+          </Card.Description>
+        <Form add>
+        <Form.TextArea
+        value={this.state.description}
+        onChange={this.changeHandler}
+        name='description' />
+
+
+    </Form>
+        <Card.Content extra>
+          <div className='ui two buttons'>
+            <Button content='Add New'
+              onClick={this.addClickHandler} labelPosition='left' icon='edit' primary />
+            {this.props.new_event ? <Button
+              onClick={this.addToMapHandler}
+              className='ui red button'>
+              Place marker on map
+            </Button> : <Button
+              onClick={this.addToMapHandler}
+              className='ui green button'>
+              Add to map?
+            </Button>}
+          </div>
+        </Card.Content>
+      </Card>
+
     </div>
+
     )
   }
 }
@@ -73,4 +110,14 @@ class add extends React.Component{
 const mapStateToProps = (state) =>{
   return state
 }
-export default withRouter(connect(mapStateToProps)(add))
+export default withRouter(connect(mapStateToProps, { addMap })(add))
+//
+// <input
+//
+//    type='text' placeholder='description' name='description' value={this.state.description} onChange={this.changeHandler} />
+
+// <br></br>
+
+
+// <NewEventMap mapClickHandler={this.mapClickHandler}
+// marker={this.state.marker} />

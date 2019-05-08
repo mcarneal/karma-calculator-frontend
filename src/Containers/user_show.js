@@ -7,7 +7,7 @@ import Event from '../Components/event'
 import { Route, Switch, withRouter } from "react-router-dom"
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import UserNav from '../Components/usernav'
-
+import Gauge from 'react-radial-gauge';
 
 
 class UserShow extends React.Component{
@@ -28,11 +28,12 @@ class UserShow extends React.Component{
 
 
   componentDidMount(){
+    console.log('inside user show',this.props.fetch)
     if(isNaN(this.props.view)){
          this.props.history.push('/home')
        } else {
     let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.view )
-    myEvents.map(event => this.setState({username : event.username}))
+    myEvents.map(event => this.setState({username : event.created_by}))
     let sortedArray = myEvents.sort(function(a, b){return b.id - a.id})
     this.setState({myEvents : sortedArray})
     this.props.myEvents(sortedArray)
@@ -67,6 +68,7 @@ class UserShow extends React.Component{
   }
 
   render(){
+
     let good = this.goodKarma()
     let bad = this.badKarma()
     let total = this.totalKarma()
@@ -75,19 +77,42 @@ class UserShow extends React.Component{
     width: "100%",
     height: "500px"
     };
+
+    const goodOptions = {
+      needleBaseSize: 0,
+      currentValue : good,
+      progressWidth : 15,
+      progressColor : '#228B22',
+      needleColor: '#fffff',
+      tickColor: '#fffff'
+    }
+
+    const badOptions = {
+      needleBaseSize: 0,
+      currentValue : bad,
+      progressWidth : 15,
+      progressColor : '#DC143C',
+      needleColor: '#fffff',
+      tickColor: '#fffff'
+    }
     return(
     <div>
     <UserNav />
-    <h1>{this.state.username} s profile</h1>
     <div className='user-container'>
       <ActionCableConsumer channel={{channel: 'FeedChannel'}} onReceived={(data) => {this.handleReceived(data)}} />
       <div className='card-container'>
       {this.renderMyEvents()}
     </div>
     <div className='karma-container'>
-      <h1>Good Karma Points: {good}</h1>
-      <h1>Bad Karma Points: {bad}</h1>
-      <h1>Total Karma Points: {Math.round(total * 100) / 100}</h1>
+        <h1>{this.state.username} s profile</h1>
+      <div className='good'>
+      <Gauge {...goodOptions} />
+      <h2>Good Karma Points: {good}</h2>
+      </div>
+      <div className='bad'>
+      <Gauge {...badOptions} />
+      <h2>Bad Karma Points: {bad}</h2>
+      </div>
       </div>
     </div>
   </div>

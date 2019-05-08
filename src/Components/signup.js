@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {signmeUp} from '../actions'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import { Button, Input } from 'semantic-ui-react'
 
 class SignmeUp extends Component {
   state = {
@@ -16,33 +17,32 @@ class SignmeUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.signmeUp(this.state, this.props.history)
     this.setState({
       user: '',
       password: ''
     })
-
+    this.props.signmeUp(this.state, this.props.history)
   }
 
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input
-            label="username"
+          <Input
+
             name="username"
             placeholder="username"
             onChange={this.handleChange}
             value={this.state.username}
           />
-          <input
-            label="password"
+        <Input
+
             name="password"
             placeholder="password"
             onChange={this.handleChange}
             value={this.state.password}
           />
-          <button type="submit">SUBMIT </button>
+        <button className='ui blue button' id='signup'>SUBMIT </button>
         </form>
       </div>
     )
