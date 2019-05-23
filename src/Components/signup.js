@@ -36,7 +36,7 @@ class SignmeUp extends Component {
             value={this.state.username}
           />
         <Input
-
+	    type='password'
             name="password"
             placeholder="password"
             onChange={this.handleChange}

@@ -4,13 +4,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
  import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
+ import GoogleFontLoader from 'react-google-font-loader';
 class DemoCarousel extends Component {
     render() {
         return (
           <div className='backgroundcontainter'>
             <div className='Text area'>
-              <h2>Welcome To</h2>
-              <h2>Karma Calculator</h2>
+               <h1 style={{ fontFamily: 'Pacifico' }}>Welcome to Karma Calculator</h1>
             </div>
             <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false} width='100%'>
                 <div>

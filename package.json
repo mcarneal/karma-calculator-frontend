@@ -13,6 +13,7 @@
     "react-actioncable-provider": "^2.0.0",
     "react-background-slideshow": "^1.0.4",
     "react-dom": "^16.8.6",
+    "react-google-font-loader": "^1.0.5",
     "react-leaflet": "^2.2.1",
     "react-radial-gauge": "^0.1.1",
     "react-redux": "^7.0.2",

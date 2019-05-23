@@ -80,7 +80,7 @@ class Map extends React.Component{
     console.log('from map', this.props)
     const style = {
       width: "100%",
-      height: "750px"
+      height: "850px"
     };
 
 

@@ -18,7 +18,8 @@ class myProfile extends React.Component{
     this.props.events(data.events)
     this.props.comments(data.comments)
     let myEvents = this.props.fetch.filter(event => parseInt(event.user_id) === this.props.user.id )
-    this.setState({myEvents})
+      this.setState({myEvents})
+
   }
 
   componentDidMount(){
@@ -48,7 +49,7 @@ class myProfile extends React.Component{
     let points = 0
     let good = this.state.myEvents.filter(event => event.karma <= 0 )
     good.map(event => points += event.karma)
-    return points
+    return points - (points + points)
   }
 
   totalKarma = () => {
@@ -62,14 +63,14 @@ class myProfile extends React.Component{
 
   render(){
 
-    debugger
-    let good = this.goodKarma()
-    let bad = this.badKarma()
+   
+      let good = (this.goodKarma() * 10) / this.state.myEvents.length
+      let bad = (this.badKarma() * 10) / this.state.myEvents.length
     let total = this.totalKarma()
 
     const goodOptions = {
       needleBaseSize: 0,
-      currentValue : good,
+        currentValue : good.toFixed(),
       progressWidth : 15,
       progressColor : '#228B22',
       needleColor: '#fffff',
@@ -78,7 +79,7 @@ class myProfile extends React.Component{
 
     const badOptions = {
       needleBaseSize: 0,
-      currentValue : bad,
+      currentValue : bad.toFixed(),
       progressWidth : 15,
       progressColor : '#DC143C',
       needleColor: '#fffff',
@@ -95,14 +96,20 @@ class myProfile extends React.Component{
       </div>
       <div className='karma-container'>
           <h1>My Profile</h1>
-        <div className='good'>
+          <div className='good'>
+              <h3>Percent of Good Karma Points</h3>
         <Gauge {...goodOptions} />
-        <h2>Good Karma Points: {good}</h2>
         </div>
         <div className='bad'>
+        <h2>Bad Karma Points: {bad.toFixed()}</h2>
         <Gauge {...badOptions} />
-        <h2>Bad Karma Points: {bad}</h2>
-        </div>
+    </div>
+    <div className="stats">
+        <h2>Total posts: {this.state.myEvents.length}</h2>
+        <h2>Good Karma Points: {good.toFixed()} </h2>
+        <h2>Bad Karma Points: {bad.toFixed()}</h2>
+
+    </div>
       </div>
     </div>
   </div>

@@ -57,7 +57,7 @@ class UserShow extends React.Component{
     let points = 0
     let good = this.state.myEvents.filter(event => event.karma <= 0 )
     good.map(event => points += event.karma)
-    return points
+    return points - (points + points)
   }
 
   totalKarma = () => {
@@ -69,8 +69,8 @@ class UserShow extends React.Component{
 
   render(){
 
-    let good = this.goodKarma()
-    let bad = this.badKarma()
+      let good = (this.goodKarma() * 10) / this.state.myEvents.length
+      let bad = (this.badKarma() * 10) / this.state.myEvents.length
     let total = this.totalKarma()
 
     const style = {
@@ -80,7 +80,7 @@ class UserShow extends React.Component{
 
     const goodOptions = {
       needleBaseSize: 0,
-      currentValue : good,
+      currentValue : good.toFixed(),
       progressWidth : 15,
       progressColor : '#228B22',
       needleColor: '#fffff',
@@ -89,7 +89,7 @@ class UserShow extends React.Component{
 
     const badOptions = {
       needleBaseSize: 0,
-      currentValue : bad,
+        currentValue : bad.toFixed(),
       progressWidth : 15,
       progressColor : '#DC143C',
       needleColor: '#fffff',
@@ -105,14 +105,20 @@ class UserShow extends React.Component{
     </div>
     <div className='karma-container'>
         <h1>{this.state.username} s profile</h1>
-      <div className='good'>
+        <div className='good'>
+            <h3>Percent of Good Karma Points</h3>
       <Gauge {...goodOptions} />
-      <h2>Good Karma Points: {good}</h2>
       </div>
       <div className='bad'>
-      <Gauge {...badOptions} />
-      <h2>Bad Karma Points: {bad}</h2>
-      </div>
+          <h3>Percent of Bad Karma Points</h3>
+          <Gauge {...badOptions} />
+        </div>
+      <div className="stats">
+          <h2>Total posts: {this.state.myEvents.length}</h2> 
+          <h2>Good Karma Points: {good.toFixed()} / {this.state.myEvents.length * 10}</h2>
+          <h2>Bad Karma Points: {bad.toFixed()} / {this.state.myEvents.length * 10}</h2>
+         
+      </div> 
       </div>
     </div>
   </div>

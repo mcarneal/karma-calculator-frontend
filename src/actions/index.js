@@ -87,6 +87,7 @@ export const signmeUp = (user, routerHistory) => {
   }
 }
 
+
 export const autoLogin = () => {
   return dispatch => {
     fetch('http://localhost:3000/api/v1/auto_login', {
