@@ -11,9 +11,9 @@ class Map extends React.Component{
     events : []
   }
 
-  componentDidMount() {
+    componentDidMount() {
       this.setState({
-        map : eeGeo.map("map", "32c8b23dc4d91c553e1d491a8c9cc55a", {
+        map : eeGeo.map("map", `${process.env.REACT_APP_MAP_KEY}`, {
           center: [
             40.70547963400777,
             -74.01334879919888
@@ -31,7 +31,6 @@ class Map extends React.Component{
       if(event.lat){
            eeGeo.marker([event.lat, event.lng], { title: "My marker" }).addTo(this.state.map)
       } else {
-        console.log('false marker')
       }
     })
   }
@@ -42,7 +41,6 @@ class Map extends React.Component{
       this.renderMarkers()
       this.state.map.setView([firstEvent.lat, firstEvent.lng])
     } else {
-      console.log('not?')
     }
   }
 
@@ -77,7 +75,6 @@ class Map extends React.Component{
 
 
   render() {
-    console.log('from map', this.props)
     const style = {
       width: "100%",
       height: "850px"

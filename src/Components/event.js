@@ -58,30 +58,6 @@ class event extends React.Component{
       })
     }
 
-   // commentSubmit = (e) => {
-   //
-   //   e.preventDefault()
-   //   fetch("http://localhost:3000/api/v1/comments",{
-   //     method: 'POST',
-   //     headers: {
-   //       "Content-Type": "application/json"
-   //     },
-   //     body: JSON.stringify({
-   //       comment:{
-   //         description: this.state.comment,
-   //         user_id: this.props.user.id,
-   //         event_id: this.props.id,
-   //         username: this.props.user.username
-   //       }
-   //       })
-   //     })
-   // }
-
-   // renderComments = () => {
-   //   let myComments = this.props.user_comments.filter(comment => parseInt(comment.event_id) === this.props.id )
-   //   return myComments.map(comment =>
-   //     <p>{comment.username} wrote : {comment.description}</p>)
-   // }
 
    userProfileHandler = () => {
      this.props.selectedUser(parseInt(this.props.user_id))
@@ -93,23 +69,12 @@ class event extends React.Component{
      this.props.mapPosition(cords)
    }
 
-   // buttonRender = () => {
-   //   if (this.props.view !== isNaN(this.props.view) || this.props.view.type === "MY_PROFILE"){
-   //     <button className='ui blue button' onClick={this.showMapHandler}>Show map</button>} else {
-   //       null
-   //     }
-   // }
 
    buttonRender = () => {
      if (this.props.view.type == "HOME"){
        return  <button className='ui blue button' onClick={this.showMapHandler}>Show map</button>
      }
    }
-
-   componentDidMount(){
-     console.log('inside event', this.props)
-   }
-
 
 
     render(){
@@ -118,7 +83,7 @@ class event extends React.Component{
       <Card>
       <Card.Content>
         <Card.Header>
-          <Link to='/user_show'     onClick={this.userProfileHandler}>
+          <Link to='/user_show' onClick={this.userProfileHandler}>
             {this.props.created_by}
           </Link>
         </Card.Header>
@@ -163,15 +128,3 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { selectedUser, mapPosition })(event)
 
-//
-// <Link to='/user_show' onClick={this.userProfileHandler}>
-//   <p>{this.props.created_by}</p>
-// </Link>
-//   <p>{this.props.description}</p>
-//   <p>{this.props.location}</p>
-//   <p>{this.props.karma}</p>
-//   <button onClick={this.upButtonHandler}>Up</button><button onClick={this.downButtonHandler}>Down</button>
-//   <button onClick={this.showMapHandler}>Show map</button>
-//   {this.state.showMap ? <EventMap lat={this.props.lat}
-//   lng={this.props.lng} /> : null}
-//   <ModalModalExample {...this.props} />

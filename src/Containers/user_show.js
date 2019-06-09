@@ -115,8 +115,8 @@ class UserShow extends React.Component{
         </div>
       <div className="stats">
           <h2>Total posts: {this.state.myEvents.length}</h2> 
-          <h2>Good Karma Points: {good.toFixed()} / {this.state.myEvents.length * 10}</h2>
-          <h2>Bad Karma Points: {bad.toFixed()} / {this.state.myEvents.length * 10}</h2>
+          <h2>Good Karma Points: {good.toFixed()}</h2>
+          <h2>Bad Karma Points: {bad.toFixed()}</h2>
          
       </div> 
       </div>

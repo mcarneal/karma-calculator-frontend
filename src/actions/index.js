@@ -100,7 +100,8 @@ export const autoLogin = () => {
         if (data.error) {
           alert(data.error)
         } else {
-          dispatch({ type: 'LOGIN', payload: data})
+            dispatch({ type: 'LOGIN', payload: data})
+             
         }
       })
   }

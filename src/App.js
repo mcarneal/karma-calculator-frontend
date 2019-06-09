@@ -16,7 +16,8 @@ import DemoCarousel from './Containers/imageCarosel'
 class App extends React.Component{
 
   //
-  componentDidMount() {
+    componentDidMount() {
+         
     let token = localStorage.getItem("token")
     if (token) {
       this.props.autoLogin()

@@ -62,8 +62,6 @@ class add extends React.Component{
 
 
   render(){
-    console.log('propin render', this.props)
-    console.log('add event test', this.props.new_event)
     return(
     <div className='add-container'>
       <Card>
