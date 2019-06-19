@@ -1,13 +1,9 @@
 import React from 'react';
 import UserNav from '../Components/usernav'
-import GlobalNav from '../Components/globalnav'
-import Main from './main'
-import MyProfile from './myprofile'
 import Add from './add'
 import Feed from './feed'
-import { Route, Switch, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import Map from './map'
-import NewEventForm from '../Components/neweventform'
 import { connect } from 'react-redux'
 
 class Home extends React.Component{

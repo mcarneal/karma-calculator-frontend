@@ -4,7 +4,7 @@ import { events } from '../actions'
 import { comments } from '../actions'
 import { myEvents } from '../actions'
 import Event from '../Components/event'
-import { Route, Switch, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import UserNav from '../Components/usernav'
 import Gauge from 'react-radial-gauge';
@@ -28,7 +28,6 @@ class UserShow extends React.Component{
 
 
   componentDidMount(){
-    console.log('inside user show',this.props.fetch)
     if(isNaN(this.props.view)){
          this.props.history.push('/home')
        } else {
@@ -71,12 +70,7 @@ class UserShow extends React.Component{
 
       let good = (this.goodKarma() * 10) / this.state.myEvents.length
       let bad = (this.badKarma() * 10) / this.state.myEvents.length
-    let total = this.totalKarma()
 
-    const style = {
-    width: "100%",
-    height: "500px"
-    };
 
     const goodOptions = {
       needleBaseSize: 0,

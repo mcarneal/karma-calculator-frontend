@@ -4,7 +4,6 @@ import { events } from '../actions'
 import { comments } from '../actions'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import Event from '../Components/event'
-import Map from './map'
 
 class feed extends React.Component{
 

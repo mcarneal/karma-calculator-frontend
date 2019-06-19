@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Image, Modal, Comment, Form } from 'semantic-ui-react'
+import { Button, Header, Modal, Comment, Form } from 'semantic-ui-react'
 
 class ModalModalExample extends React.Component{
 

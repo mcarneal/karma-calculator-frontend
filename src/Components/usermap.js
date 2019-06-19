@@ -12,7 +12,6 @@ class Map extends React.Component{
 
     let marker = eeGeo.marker([40.70547963400777, -74.01334879919888], { title: "My marker" }).addTo(map)
 
-    console.log(map)
   }
 
   render() {

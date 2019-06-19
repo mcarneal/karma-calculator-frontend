@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, withRouter, Router } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'
-import { myProfile } from '../actions'
 import { Menu, Segment } from 'semantic-ui-react'
 
 
@@ -31,7 +30,6 @@ class userNav extends React.Component{
   }
 
   homeButtonHandler = (e, { name }) => {
-    console.log(this.props)
     this.props.dispatch({
       type: "HOME"
     })
@@ -40,7 +38,6 @@ class userNav extends React.Component{
   }
 
   addButtonHandler = (e) => {
-    console.log(this.props)
     this.props.dispatch({
       type: "ADD"
     })

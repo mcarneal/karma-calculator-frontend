@@ -6,7 +6,7 @@ import { events } from '../actions'
 import { comments } from '../actions'
 import UserNav from '../Components/usernav'
 import Gauge from 'react-radial-gauge';
-import { Route, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 
 class myProfile extends React.Component{
 
@@ -33,7 +33,6 @@ class myProfile extends React.Component{
   }
 
   renderMyEvents = () =>{
-    console.log(this.state.myEvents)
     return this.state.myEvents.map(event =>
      <Event {...event} />
     )
@@ -66,7 +65,6 @@ class myProfile extends React.Component{
    
       let good = (this.goodKarma() * 10) / this.state.myEvents.length
       let bad = (this.badKarma() * 10) / this.state.myEvents.length
-    let total = this.totalKarma()
 
     const goodOptions = {
       needleBaseSize: 0,

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
- import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
- import GoogleFontLoader from 'react-google-font-loader';
 class DemoCarousel extends Component {
     render() {
         return (
@@ -14,17 +11,18 @@ class DemoCarousel extends Component {
             </div>
             <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false} width='100%'>
                 <div>
-                    <img className='bgimg' src={require('../image4.jpg')} />
+                    <img className='bgimg' alt='backgroundimg1' src={require('../image4.jpg')} />
                     <p className="legend">Legend 1</p>
                 </div>
                 <div>
-                  <img
+                  <img alt ='backgroundimg2'
                     className='bgimg'
                      src={require('../image5.jpg')} />
                     <p className="legend">Legend 2</p>
                 </div>
                 <div>
                     <img
+                        alt='backgroundimg3'
                       className='bgimg'
                       src={require('../image7.jpg')} />
                     <p className="legend">Legend 3</p>

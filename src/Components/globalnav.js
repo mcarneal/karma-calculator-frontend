@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, withRouter, Router } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 
 class globalNav extends React.Component{

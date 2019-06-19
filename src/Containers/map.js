@@ -27,7 +27,7 @@ class Map extends React.Component{
 
   renderMarkers = () => {
     let events = this.props.fetch
-    events.map((event) => {
+    events.forEach((event) => {
       if(event.lat){
            eeGeo.marker([event.lat, event.lng], { title: "My marker" }).addTo(this.state.map)
       } else {

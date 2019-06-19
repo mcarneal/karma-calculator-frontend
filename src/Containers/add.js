@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import NewEventMap from '../Components/neweventmap'
-import UserNav from '../Components/usernav'
 import { withRouter} from 'react-router-dom'
-import { Input, Card, Form, Button } from 'semantic-ui-react'
+import { Card, Form, Button } from 'semantic-ui-react'
 import { addMap } from '../actions'
 
 class add extends React.Component{

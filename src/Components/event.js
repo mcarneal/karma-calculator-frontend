@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import UserShow from '../Containers/user_show'
-import { Route, Switch, Link  } from "react-router-dom"
+import { Link  } from "react-router-dom"
 import { selectedUser } from '../actions'
 import { mapPosition } from '../actions'
 import 'leaflet/dist/leaflet.css'
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-import L from 'leaflet';
-import EventMap from './eventmap'
 import ModalModalExample from './modal'
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card } from 'semantic-ui-react'
 
 class event extends React.Component{
 
@@ -71,7 +67,7 @@ class event extends React.Component{
 
 
    buttonRender = () => {
-     if (this.props.view.type == "HOME"){
+     if (this.props.view.type === "HOME"){
        return  <button className='ui blue button' onClick={this.showMapHandler}>Show map</button>
      }
    }

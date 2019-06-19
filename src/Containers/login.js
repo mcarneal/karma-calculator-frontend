@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { login } from '../actions'
-import { Route, Switch, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import Signup from '../Components/signup'
 
-import { Button, Menu, Modal, Card, Header, Input } from 'semantic-ui-react'
-
-import DemoCarousel from './imageCarosel'
+import { Button, Menu, Modal, Header, Input } from 'semantic-ui-react'
 
 
 class Login extends React.Component{

@@ -1,11 +1,10 @@
 import React from 'react'
-import { Button, Header, Image, Form, Card } from 'semantic-ui-react'
+import { Form, Card } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class newEventForm extends React.Component{
 
   render(){
-    console.log(this.props.new_event)
     return(
       <Card>
         <Card.Header>
