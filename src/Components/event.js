@@ -6,6 +6,8 @@ import { mapPosition } from '../actions'
 import 'leaflet/dist/leaflet.css'
 import ModalModalExample from './modal'
 import { Button, Card } from 'semantic-ui-react'
+import API_URL from '../config.js'
+
 
 class event extends React.Component{
 
@@ -24,7 +26,7 @@ class event extends React.Component{
     upButtonHandler = (e) => {
         e.preventDefault()
         this.setState({karma: this.state.karma + 1})
-        fetch(`http://localhost:3000/api/v1/events/${this.props.id}`,{
+        fetch(`${API_URL}/api/v1/events/${this.props.id}`,{
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +43,7 @@ class event extends React.Component{
     downButtonHandler = (e) => {
         e.preventDefault()
         this.setState({karma: this.state.karma - 1})
-        fetch(`http://localhost:3000/api/v1/events/${this.props.id}`,{
+        fetch(`${API_URL}/api/v1/events/${this.props.id}`,{
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"

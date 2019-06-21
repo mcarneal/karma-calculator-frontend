@@ -4,6 +4,7 @@ import { events } from '../actions'
 import { comments } from '../actions'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 import Event from '../Components/event'
+import API_URL from '../config.js'
 
 class feed extends React.Component{
 
@@ -14,12 +15,12 @@ class feed extends React.Component{
   }
 
   componentDidMount(){
-    fetch("http://localhost:3000/api/v1/events")
+    fetch(`${API_URL}/api/v1/events`)
     .then(res => res.json())
     .then(data => {
       this.props.events(data)
     })
-    fetch("http://localhost:3000/api/v1/comments")
+    fetch(`${API_URL}/api/v1/comments`)
     .then(res => res.json())
     .then(data => {
       this.props.comments(data)

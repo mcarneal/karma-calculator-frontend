@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { login } from '../actions'
 import { withRouter } from "react-router-dom"
 import Signup from '../Components/signup'
+import API_URL from '../config.js'
+
 
 import { Button, Menu, Modal, Header, Input } from 'semantic-ui-react'
 
@@ -23,7 +25,7 @@ class Login extends React.Component{
   loginSubmitHandler = (e) => {
 
     e.preventDefault()
-    fetch('http://localhost:3000/api/v1/login',{
+    fetch(`${API_URL}/api/v1/login`,{
        method: 'POST',
        headers: {
             "Content-Type": "application/json"

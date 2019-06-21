@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter} from 'react-router-dom'
 import { Card, Form, Button } from 'semantic-ui-react'
 import { addMap } from '../actions'
+import API_URL from '../config.js'
 
 class add extends React.Component{
 
@@ -16,7 +17,7 @@ class add extends React.Component{
 
   addClickHandler = (e) => {
     e.preventDefault()
-      fetch('http://localhost:3000/api/v1/events',{
+      fetch(`${API_URL}/api/v1/events`,{
          method: 'POST',
          headers: {
               "Content-Type": "application/json"

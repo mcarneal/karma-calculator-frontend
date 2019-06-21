@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Header, Modal, Comment, Form } from 'semantic-ui-react'
+import API_URL  from '../config.js'
 
 class ModalModalExample extends React.Component{
 
@@ -31,7 +32,7 @@ class ModalModalExample extends React.Component{
     commentSubmit = (e) => {
 
         e.preventDefault()
-        fetch("http://localhost:3000/api/v1/comments",{
+        fetch(`${API_URL}/api/v1/comments`,{
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

@@ -1,3 +1,6 @@
+import API_URL from '../config.js'
+
+
 export const login = (user) => {
   return {
     type: 'LOGIN',
@@ -58,7 +61,7 @@ export const comments = (comments) => {
 
 export const signmeUp = (user, routerHistory) => {
   return dispatch => {
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch(`${API_URL}/api/v1/users`, {
       method: 'POST',
       headers: {
         "Accepts": "application/json",
@@ -90,7 +93,7 @@ export const signmeUp = (user, routerHistory) => {
 
 export const autoLogin = () => {
   return dispatch => {
-    fetch('http://localhost:3000/api/v1/auto_login', {
+    fetch(`${API_URL}/api/v1/auto_login`, {
       headers: {
         'Authorization': localStorage.getItem('token')
       }
