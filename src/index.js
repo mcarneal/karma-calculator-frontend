@@ -10,9 +10,8 @@ import { ActionCableProvider } from 'react-actioncable-provider'
 import 'semantic-ui/dist/semantic.min.css';
 
 
-
 ReactDOM.render(
-  <ActionCableProvider url='ws://localhost:3000/api/v1/cable'>
+  <ActionCableProvider url='ws://karmacalculatorapi.herokuapp.com/api/v1/cable'>
   <Provider store={store}>
     <BrowserRouter>
     <App store={store} />

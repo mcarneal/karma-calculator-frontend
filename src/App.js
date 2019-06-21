@@ -10,7 +10,7 @@ import Map from './Containers/map'
 import MyProfile from './Containers/myprofile'
 import Add from './Containers/add'
 import DemoCarousel from './Containers/imageCarosel'
-
+require('dotenv').config()
 
 
 class App extends React.Component{

@@ -8,6 +8,7 @@
     "@progress/kendo-react-intl": "^2.10.0",
     "chart.js": "^2.8.0",
     "chartjs-chart-radial-gauge": "^1.0.3",
+    "dotenv": "^8.0.0",
     "leaflet": "^1.4.0",
     "react": "^16.8.6",
     "react-actioncable-provider": "^2.0.0",
