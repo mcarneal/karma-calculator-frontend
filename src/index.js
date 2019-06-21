@@ -11,7 +11,7 @@ import 'semantic-ui/dist/semantic.min.css';
 
 
 ReactDOM.render(
-  <ActionCableProvider url='ws://karmacalculatorapi.herokuapp.com/api/v1/cable'>
+  <ActionCableProvider url='wss://karmacalculatorapi.herokuapp.com/api/v1/cable'>
   <Provider store={store}>
     <BrowserRouter>
     <App store={store} />
