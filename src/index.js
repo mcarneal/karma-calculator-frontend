@@ -8,6 +8,7 @@ import store from './store'
 import { BrowserRouter } from 'react-router-dom'
 import { ActionCableProvider } from 'react-actioncable-provider'
 import 'semantic-ui/dist/semantic.min.css';
+require('dotenv').config()
 
 
 ReactDOM.render(
