@@ -1,3 +1,22 @@
+##### KARMA CALCULATOR ##### 
+
+Karma calculator is a social application designed for users to post postive and negative interactions that occur and be given a karma score amonst there peers. The app aims to promote positive social behavior. 
+
+Karma calculator uses a ruby, rails, websockets, bcrypt for authentication, react.js, redux, and wrld.js. 
+
+wrld.js is an opensource javascript library build on map box. 
+
+to access this api you must register with wrld.js to recieve a developer licence. 
+
+Once a license has been aquired create a .env file in the main directory of this app with the following. 
+REACT_APP_MAP_KEY=api key
+
+the .env file is hidden from this github repo.
+
+
+
+This application is a project created by Michael Carneal.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
