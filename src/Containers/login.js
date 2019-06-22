@@ -116,22 +116,3 @@ const mapStateToProps = (state) => {
 export default withRouter(connect(mapStateToProps, {login})(Login))
 
 
-// <h1>Login</h1>
-// <form>
-//   <Input
-//      type='text'
-//      placeholder='username'
-//      name='username'
-//      onChange={this.loginChangeHandler}
-//      value={this.state.username}/>
-//   <br></br>
-//   <input
-//     type='password'
-//     placeholder='password'
-//     name='password'
-//     onChange={this.loginChangeHandler}
-//     value={this.state.password}/>
-//     <br></br>
-//   <button onClick={this.loginSubmitHandler}> Log in </button>
-// </form>
-// <Signup />
