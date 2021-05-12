@@ -6,7 +6,7 @@
     "@progress/kendo-drawing": "^1.5.11",
     "@progress/kendo-react-gauges": "^2.10.0",
     "@progress/kendo-react-intl": "^2.10.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "chartjs-chart-radial-gauge": "^1.0.3",
     "dotenv": "^8.0.0",
     "leaflet": "^1.4.0",
